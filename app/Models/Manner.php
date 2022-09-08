@@ -9,9 +9,13 @@ class Manner extends Model
 {
     use HasFactory;
     protected $table = "manners";
+    protected $casts = [
+        'date'  => 'date:F j, Y',
+    ];
     protected $fillable = [
         "date",
-        "time",
+        "timestart",
+        "timeend",
         "day",
         "trainer",
         "availslot",

@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('manners', function (Blueprint $table) {
             $table->id();
             $table->string("date");
-            $table->string("time");
+            $table->string("timestart");
+            $table->string("timeend");
             $table->string("day");
             $table->string("trainer");
             $table->integer("availslot");

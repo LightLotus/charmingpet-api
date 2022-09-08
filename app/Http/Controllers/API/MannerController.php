@@ -22,7 +22,8 @@ class MannerController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'date' => 'required',
-            'time' => 'required',
+            'timestart' => 'required',
+            'timeend' => 'required',
             'day' => 'required',
             'trainer' => 'required',
             'availslot' => 'required',
@@ -37,7 +38,8 @@ class MannerController extends Controller
         } else {
             $manner = new Manner;
             $manner->date = $request->input('date');
-            $manner->time = $request->input('time');
+            $manner->timestart = $request->input('timestart');
+            $manner->timeend = $request->input('timeend');
             $manner->day = $request->input('day');
             $manner->trainer = $request->input('trainer');
             $manner->availslot = $request->input('availslot');
@@ -46,9 +48,29 @@ class MannerController extends Controller
 
             return response()->json([
                 'status' => 200,
-                'message' => 'Student Added Successfully',
+                'message' => 'Manner Class Added Successfully',
             ]);
         }
     }
+
+    public function destroy($id)
+    {
+        $manner = Manner::find($id);
+        if ($manner) {
+            $manner->delete();
+            return response()->json([
+                'status' => 200,
+                'warning' => 'Are you sure you want to delete this schedule?',
+                'message' => 'Manner Class Deleted Successfully',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No Student ID Found',
+            ]);
+        }
+    }
+
+
 }
 
