@@ -13,18 +13,17 @@ class MannerController extends Controller
     {
         $manners = Manner::all();
         return response()->json([
-            'status'=>200,
-            'manners'=>$manners,
+            'status' => 200,
+            'manners' => $manners,
         ]);
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'date' => 'required',
             'timestart' => 'required',
             'timeend' => 'required',
-            'day' => 'required',
             'trainer' => 'required',
             'availslot' => 'required',
             'status' => 'required'
@@ -40,7 +39,6 @@ class MannerController extends Controller
             $manner->date = $request->input('date');
             $manner->timestart = $request->input('timestart');
             $manner->timeend = $request->input('timeend');
-            $manner->day = $request->input('day');
             $manner->trainer = $request->input('trainer');
             $manner->availslot = $request->input('availslot');
             $manner->status = $request->input('status');
@@ -53,6 +51,62 @@ class MannerController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $manner = Manner::find($id);
+        if ($manner) {
+            return response()->json([
+                'status' => 200,
+                'manner' => $manner,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No Class Schedule Found',
+            ]);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'timestart' => 'required',
+            'timeend' => 'required',
+            'trainer' => 'required',
+            'availslot' => 'required',
+            'status' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'validationErrors' => $validator->messages(),
+            ]);
+        } else {
+            $manner = Manner::find($id);
+            if ($manner) {
+                $manner->date = $request->input('date');
+                $manner->timestart = $request->input('timestart');
+                $manner->timeend = $request->input('timeend');
+                $manner->trainer = $request->input('trainer');
+                $manner->availslot = $request->input('availslot');
+                $manner->status = $request->input('status');
+                $manner->update();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Class Schedule Updated Successfully',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'No Class Schedule Found',
+                ]);
+            }
+        }
+    }
+
     public function destroy($id)
     {
         $manner = Manner::find($id);
@@ -60,17 +114,13 @@ class MannerController extends Controller
             $manner->delete();
             return response()->json([
                 'status' => 200,
-                'warning' => 'Are you sure you want to delete this schedule?',
-                'message' => 'Manner Class Deleted Successfully',
+                'message' => 'Manner Class Schedule Deleted Successfully',
             ]);
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'No Student ID Found',
+                'message' => 'No Class Schedule Found',
             ]);
         }
     }
-
-
 }
-

@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //---Manners Route API
 Route::get('manners', [MannerController::class, 'index']);
 Route::post('addmanners', [MannerController::class, 'store']);
+Route::get('/edit-manner/{id}', [MannerController::class, 'edit']);
+Route::put('update-manner/{id}', [MannerController::class, 'update']);
 Route::delete('delete-manner/{id}', [MannerController::class, 'destroy']);

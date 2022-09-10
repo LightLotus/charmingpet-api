@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('manners', function (Blueprint $table) {
+        Schema::create('mannerenrolls', function (Blueprint $table) {
             $table->id();
-            $table->string("date");
-            $table->string("timestart");
-            $table->string("timeend");
-            $table->string("trainer");
-            $table->integer("availslot");
-            $table->enum("status",["full","available"]);
+            $table->string("petname");
+            $table->integer("age");
+            $table->string("ownername");
+            $table->string("email");
+            $table->string("phonenumber");
+            $table->string("address");
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manners');
+        Schema::dropIfExists('mannerenrolls');
     }
 };
