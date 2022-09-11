@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\MannerController;
+use App\Http\Controllers\API\MannerenrollController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::post('addmanners', [MannerController::class, 'store']);
 Route::get('/edit-manner/{id}', [MannerController::class, 'edit']);
 Route::put('update-manner/{id}', [MannerController::class, 'update']);
 Route::delete('delete-manner/{id}', [MannerController::class, 'destroy']);
+
+//---Mannerenrolls Route API
+Route::get('mannerenroll/{id}', [MannerenrollController::class, 'index']);
+Route::post('addmannerenroll', [MannerenrollController::class, 'store']);

@@ -12,6 +12,18 @@ class MannerController extends Controller
     public function index()
     {
         $manners = Manner::all();
+        $manners = $manners->map(function ($manner) {
+            return [
+                'id' => $manner->id,
+                'date' => date('F j, Y', strtotime($manner->date)),
+                'timestart' => date("g:i a", strtotime($manner->timestart)),
+                'timeend' => date("g:i a", strtotime($manner->timeend)),
+                'trainer' => $manner->trainer,
+                'availslot' => $manner->availslot,
+                'status' => $manner->status
+            ];
+        });
+
         return response()->json([
             'status' => 200,
             'manners' => $manners,

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('mannerenrolls', function (Blueprint $table) {
             $table->id();
-            $table->string("petname");
+            $table->foreignId('manner_id')->constrained('manners')->onDelete('cascade');            $table->string("petname");
             $table->integer("age");
             $table->string("ownername");
             $table->string("email");

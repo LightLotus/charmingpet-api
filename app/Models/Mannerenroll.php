@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mannerenroll extends Model
 {
     use HasFactory;
-
     protected $table = "mannerenrolls";
-    
+
     protected $fillable = [
         "petname",
         "age",
@@ -19,4 +18,9 @@ class Mannerenroll extends Model
         "phonenumber",
         "address"
     ];
+
+    public function manners()
+    {
+        return $this->hasMany(Manner::class);
+    }
 }

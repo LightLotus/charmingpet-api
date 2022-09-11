@@ -20,4 +20,9 @@ class Manner extends Model
         "availslot",
         "status"
     ];
+
+    public function mannerenroll()
+    {
+        return $this->belongsTo(Mannerenroll::class);
+    }
 }
