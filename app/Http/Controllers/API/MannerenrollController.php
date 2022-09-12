@@ -1,44 +1,129 @@
 <?php
 
-namespace App\Http\Controllers\API;
+    namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Models\Mannerenroll;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+    use App\Http\Controllers\Controller;
+    use App\Models\Mannerenroll;
+    use App\Models\Manner;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
 
-class MannerenrollController extends Controller
-{
-    public function store(Request $request)
+    class MannerenrollController extends Controller
     {
-    $validator = Validator::make($request->all(), [
-        'petname' => 'required',
-        'age' => 'required',
-        'ownername' => 'required',
-        'email' => 'required',
-        'phonenumber' => 'required',
-        'address' => 'required'
-    ]);
+        public function index()
+        {
+            $mannerenroll = Mannerenroll::all();
 
-    if ($validator->fails()){
-        return response()->json([
-            'status' => 422,
-            'validate_err' => $validator->messages(),
-        ]);
-    } else {
-        $mannerenroll = new Mannerenroll;
-        $mannerenroll->petname = $request->input('petname');
-        $mannerenroll->age = $request->input('age');
-        $mannerenroll->ownername = $request->input('ownername');
-        $mannerenroll->email = $request->input('email');
-        $mannerenroll->phonenumber = $request->input('phonenumber');
-        $mannerenroll->address = $request->input('address');
-        $mannerenroll->save();
+            return response()->json([
+                'status' => 200,
+                'mannerenroll' => $mannerenroll,
+            ]);
+        }
 
-        return response()->json([
-            'status' => 200,
-            'message'=> 'Student Added Successfully'
-        ]);
+        public function store(Request $request)
+        {
+            $validator = Validator::make($request->all(), [
+                'petname' => 'required',
+                'age' => 'required',
+                'ownername' => 'required',
+                'email' => 'required',
+                'phonenumber' => 'required',
+                'address' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 422,
+                    'validate_err' => $validator->messages(),
+                ]);
+            } else {
+                $mannerenroll = new Mannerenroll;
+                $mannerenroll->petname = $request->input('petname');
+                $mannerenroll->age = $request->input('age');
+                $mannerenroll->ownername = $request->input('ownername');
+                $mannerenroll->email = $request->input('email');
+                $mannerenroll->phonenumber = $request->input('phonenumber');
+                $mannerenroll->address = $request->input('address');
+                $mannerenroll->save();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Student Added Successfully'
+                ]);
+            }
+        }
+
+        public function edit($id)
+        {
+            $mannerenroll = Mannerenroll::find($id);
+            if ($mannerenroll) {
+                return response()->json([
+                    'status' => 200,
+                    'mannerenroll' => $mannerenroll,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'No Class Schedule Found',
+                ]);
+            }
+        }
+
+        public function update(Request $request, $id)
+        {
+            $validator = Validator::make($request->all(), [
+                'petname' => 'required',
+                'age' => 'required',
+                'ownername' => 'required',
+                'email' => 'required',
+                'phonenumber' => 'required',
+                'address' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 422,
+                    'validationErrors' => $validator->messages(),
+
+                ]);
+            } else {
+                $mannerenroll = Mannerenroll::find($id);
+                if ($mannerenroll) {
+                    $mannerenroll->petname = $request->input('petname');
+                    $mannerenroll->age = $request->input('age');
+                    $mannerenroll->ownername = $request->input('ownername');
+                    $mannerenroll->email = $request->input('email');
+                    $mannerenroll->phonenumber = $request->input('phonenumber');
+                    $mannerenroll->address = $request->input('address');
+                    $mannerenroll->update();
+
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Student/Pet Details Updated Successfully',
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 404,
+                        'message' => 'No Student/Pet Found',
+                    ]);
+                }
+            }
+        }
+
+        public function destroy($id)
+        {
+            $mannerenroll = Mannerenroll::find($id);
+            if ($mannerenroll) {
+                $mannerenroll->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Manner Class Schedule Deleted Successfully',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'No Class Schedule Found',
+                ]);
+            }
+        }
     }
-    }
-}

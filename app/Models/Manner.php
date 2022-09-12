@@ -23,6 +23,7 @@ class Manner extends Model
 
     public function mannerenroll()
     {
-        return $this->belongsTo(Mannerenroll::class);
+        // return $this->belongsTo(Mannerenroll::class);
+        return $this->hasMany(Mannerenroll::class);
     }
 }
