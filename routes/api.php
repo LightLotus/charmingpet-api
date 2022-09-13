@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AdoptionController;
+use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\MannerController;
 use App\Http\Controllers\API\MannerenrollController;
 use Illuminate\Http\Request;
@@ -41,3 +42,10 @@ Route::post('addadoption', [AdoptionController::class, 'store']);
 Route::get('editadoption/{id}',[AdoptionController::class, 'edit']);
 Route::put('updateadoption/{id}', [AdoptionController::class, 'update']);
 Route::delete('deleteadoption/{id}', [AdoptionController::class, 'destroy']);
+
+//---Customer Route API (Interested User to adoption
+Route::get('customer', [CustomerController::class, 'index']);
+Route::post('addcustomer', [CustomerController::class, 'store']);
+Route::get('editcustomer/{id}', [CustomerController::class, 'edit']);
+Route::put('updatecustomer/{id}', [CustomerController::class, 'update']);
+Route::delete('deletecustomer/{id}', [CustomerController::class, 'destroy']);

@@ -45,7 +45,7 @@ class CustomerController extends Controller
 
             return response()->json([
                 'status' => 200,
-                'message' => 'Successfully Queued!'
+                'message' => 'Request Successful! You may now close this window and wait for our call'
             ]);
         }
     }
