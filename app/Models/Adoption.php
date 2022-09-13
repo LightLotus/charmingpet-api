@@ -20,4 +20,9 @@ class Adoption extends Model
         "sex",
         "imgsrc"
     ];
+
+    public function customers()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
