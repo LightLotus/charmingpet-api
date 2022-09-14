@@ -27,6 +27,8 @@ class CustomerController extends Controller
             'contactnumber' => 'required',
             'email' => 'required',
             'address' => 'required',
+            'dateinterview' => 'required',
+            'timeinterview' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -41,6 +43,8 @@ class CustomerController extends Controller
             $customer->contactnumber = $request->input('contactnumber');
             $customer->email = $request->input('email');
             $customer->address = $request->input('address');
+            $customer->dateinterview = $request->input('dateinterview');
+            $customer->timeinterview = $request->input('timeinterview');
             $customer->save();
 
             return response()->json([

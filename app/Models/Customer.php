@@ -14,9 +14,11 @@ class Customer extends Model
         "lastname",
         "contactnumber",
         "email",
-        "address"
+        "address",
+        "dateinterview",
+        "timeinterview"
     ];
-    
+
     // the use can have many adoption/s
     public function adoption()
     {

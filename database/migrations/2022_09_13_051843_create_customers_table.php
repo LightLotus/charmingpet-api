@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string("contactnumber");
             $table->string("email");
             $table->string("address");
+            $table->string("dateinterview");
+            $table->string("timeinterview");
             $table->timestamps();
         });
     }
