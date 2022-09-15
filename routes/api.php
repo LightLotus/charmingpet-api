@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AdoptionController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\MannerController;
 use App\Http\Controllers\API\MannerenrollController;
+use App\Http\Controllers\API\PuppyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//---Manners Route API (for class schedules)
+//---Manners Route API (for class manner schedules)
 Route::get('manners', [MannerController::class, 'index']);
 Route::post('addmanners', [MannerController::class, 'store']);
 Route::get('/edit-manner/{id}', [MannerController::class, 'edit']);
 Route::put('update-manner/{id}', [MannerController::class, 'update']);
 Route::delete('delete-manner/{id}', [MannerController::class, 'destroy']);
+
+//---Puppy Class Route API (for class puppy schedules)
+Route::get('puppies', [PuppyController::class, 'index']);
+Route::post('addpuppies', [PuppyController::class, 'store']);
+Route::get('/edit-puppies/{id}', [PuppyController::class, 'edit']);
+Route::put('update-puppies/{id}', [PuppyController::class, 'update']);
+Route::delete('delete-puppies/{id}', [PuppyController::class, 'destroy']);
 
 //---Mannerenrolls Route API (for students)
 Route::get('mannerenroll', [MannerenrollController::class, 'index']);
