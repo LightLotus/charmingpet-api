@@ -117,7 +117,7 @@
                 $mannerenroll->delete();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Manner Class Schedule Deleted Successfully',
+                    'message' => 'Student Details Deleted Successfully',
                 ]);
             } else {
                 return response()->json([

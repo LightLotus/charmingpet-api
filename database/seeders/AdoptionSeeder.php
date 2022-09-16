@@ -77,6 +77,7 @@ class AdoptionSeeder extends Seeder
                 'imgsrc' => 'https://images.unsplash.com/photo-1629555256341-09e5e9871647?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RyYXklMjBkb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60',
             ]
         ];
+        
         foreach ($adoptions as $key => $value) {
             Adoption::create($value);
         }

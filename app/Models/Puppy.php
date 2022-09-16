@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Puppyenroll;
 
 class Puppy extends Model
 {
@@ -18,4 +19,9 @@ class Puppy extends Model
         "availslot",
         "status"
     ];
+
+    public function puppyenroll()
+    {
+        return $this->hasMany(Puppyenroll::class);
+    }
 }

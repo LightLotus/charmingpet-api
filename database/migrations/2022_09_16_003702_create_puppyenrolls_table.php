@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mannerenrolls', function (Blueprint $table) {
+        Schema::create('puppyenrolls', function (Blueprint $table) {
+            $table->unsignedBigInteger('puppy_id')->nullable();
+            $table->foreign('puppy_id')->references('id')->on('puppies')->onDelete('cascade'); 
             $table->id();
-            // $table->foreignId('manner_id')->constrained('manners')->onDelete('cascade');
-            $table->unsignedBigInteger('manner_id')->nullable();
-            $table->foreign('manner_id')->references('id')->on('manners')->onDelete('cascade');
             $table->string("petname");
             $table->integer("age");
             $table->string("ownername");
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mannerenrolls');
+        Schema::dropIfExists('puppyenrolls');
     }
 };

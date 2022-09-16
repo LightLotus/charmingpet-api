@@ -26,7 +26,7 @@ class PuppyController extends Controller
 
         return response()->json([
             'status' => 200,
-            'manners' => $puppy,
+            'puppies' => $puppy,
         ]);
     }
 
