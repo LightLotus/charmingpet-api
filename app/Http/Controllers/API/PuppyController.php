@@ -69,7 +69,7 @@ class PuppyController extends Controller
         if ($puppy) {
             return response()->json([
                 'status' => 200,
-                'manner' => $puppy,
+                'puppy' => $puppy,
             ]);
         } else {
             return response()->json([

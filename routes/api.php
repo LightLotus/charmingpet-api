@@ -5,6 +5,8 @@ use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\MannerController;
 use App\Http\Controllers\API\MannerenrollController;
 use App\Http\Controllers\API\PuppyController;
+use App\Http\Controllers\API\PuppyenrollController;
+use App\Models\Puppyenroll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,12 +39,19 @@ Route::get('/edit-puppies/{id}', [PuppyController::class, 'edit']);
 Route::put('update-puppies/{id}', [PuppyController::class, 'update']);
 Route::delete('delete-puppies/{id}', [PuppyController::class, 'destroy']);
 
-//---Mannerenrolls Route API (for students)
+//---Mannerenrolls Route API (for manner students)
 Route::get('mannerenroll', [MannerenrollController::class, 'index']);
 Route::post('addmannerenroll', [MannerenrollController::class, 'store']);
 Route::get('editmannerenroll/{id}', [MannerenrollController::class, 'edit']);
 Route::put('updatemannerenroll/{id}', [MannerenrollController::class, 'update']);
 Route::delete('deletemannerenroll/{id}', [MannerenrollController::class, 'destroy']);
+
+//---Puppyenrolls Route API (for puppy students)
+Route::get('puppyenroll', [PuppyenrollController::class, 'index']);
+Route::post('addpuppyenroll', [PuppyenrollController::class, 'store']);
+Route::get('editpuppyenroll/{id}', [PuppyenrollController::class, 'edit']);
+Route::put('updatepuppyenroll/{id}', [PuppyenrollController::class, 'update']);
+Route::delete('deletepuppyenroll/{id}', [PuppyenrollController::class, 'destroy']);
 
 //---Adoption Route API (Rescued animals)
 Route::get('adoption', [AdoptionController::class, 'index']);
