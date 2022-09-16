@@ -58,7 +58,7 @@ class PuppyenrollController extends Controller
         if ($puppyenroll) {
             return response()->json([
                 'status' => 200,
-                'mannerenroll' => $puppyenroll,
+                'puppyenroll' => $puppyenroll,
             ]);
         } else {
             return response()->json([
