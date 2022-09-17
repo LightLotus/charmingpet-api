@@ -16,7 +16,7 @@ class Customer extends Model
         "email",
         "address",
         "dateinterview",
-        "timeinterview"
+        "timeinterview",
     ];
 
     // the use can have many adoption/s

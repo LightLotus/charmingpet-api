@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->string("petname");
             $table->enum("status", ["available", "pending", "taken"]);
             $table->longText("description");
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->enum("sex", ["male", "female"]);
             $table->longText("imgsrc");
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,7 @@ class Adoption extends Model
         "estbirthday",
         "color",
         "sex",
-        "imgsrc"
+        "imgsrc",
     ];
 
     public function customers()

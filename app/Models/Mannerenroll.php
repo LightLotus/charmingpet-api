@@ -11,6 +11,7 @@ class Mannerenroll extends Model
     protected $table = "mannerenrolls";
 
     protected $fillable = [
+        "manner_id",
         "petname",
         "age",
         "ownername",

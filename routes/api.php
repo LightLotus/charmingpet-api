@@ -1,4 +1,7 @@
 <?php
+// header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+// header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
+// header('Access-Control-Allow-Origin: *');
 
 use App\Http\Controllers\API\AdoptionController;
 use App\Http\Controllers\API\CustomerController;
@@ -9,6 +12,8 @@ use App\Http\Controllers\API\PuppyenrollController;
 use App\Models\Puppyenroll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,12 +61,12 @@ Route::delete('deletepuppyenroll/{id}', [PuppyenrollController::class, 'destroy'
 //---Adoption Route API (Rescued animals)
 Route::get('adoption', [AdoptionController::class, 'index']);
 Route::post('addadoption', [AdoptionController::class, 'store']);
-Route::get('editadoption/{id}',[AdoptionController::class, 'edit']);
+Route::get('editadoption/{id}', [AdoptionController::class, 'edit']);
 Route::put('updateadoption/{id}', [AdoptionController::class, 'update']);
 Route::delete('deleteadoption/{id}', [AdoptionController::class, 'destroy']);
 
 //---Customer Route API (Interested User to adoption
-Route::get('customer', [CustomerController::class, 'index']);
+Route::get('customer/{id}', [CustomerController::class, 'bax_lab_nica']);
 Route::post('addcustomer', [CustomerController::class, 'store']);
 Route::get('editcustomer/{id}', [CustomerController::class, 'edit']);
 Route::put('updatecustomer/{id}', [CustomerController::class, 'update']);

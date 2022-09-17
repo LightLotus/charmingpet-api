@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('mannerenrolls', function (Blueprint $table) {
             $table->id();
             // $table->foreignId('manner_id')->constrained('manners')->onDelete('cascade');
-            $table->unsignedBigInteger('manner_id')->nullable();
+            $table->unsignedBigInteger('manner_id');
             $table->foreign('manner_id')->references('id')->on('manners')->onDelete('cascade');
             $table->string("petname");
             $table->integer("age");

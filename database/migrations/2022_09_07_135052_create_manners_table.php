@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("timestart");
             $table->string("timeend");
             $table->string("trainer");
-            $table->integer("availslot");
-            $table->enum("status",["full","available"]);
+            $table->integer("availslot")->default(3);
+            $table->enum("status", ["full", "available"]);
             $table->timestamps();
         });
     }

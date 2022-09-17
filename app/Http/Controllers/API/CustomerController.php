@@ -3,15 +3,31 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adoption;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function bax_lab_nica(Request $request)
     {
-        $customer = Customer::all();
+        $adoption_id = $request->id;
+        $customer = Customer::whereHas("adoption", function ($q) use ($adoption_id) {
+            $q->where("id", $adoption_id);
+        })->get();
+
+        $customer = $customer->map(function ($customer) {
+            return [
+                'firstname' => $customer->firstname,
+                'lastname' => $customer->lastname,
+                'contactnumber' => $customer->contactnumber,
+                'email' => $customer->email,
+                'address' => $customer->address,
+                'dateinterview' => $customer->dateinterview,
+                'timeinterview' => $customer->timeinterview,
+            ];
+        })->all();
 
         return response()->json([
             'status' => 200,
@@ -45,11 +61,13 @@ class CustomerController extends Controller
             $customer->address = $request->input('address');
             $customer->dateinterview = $request->input('dateinterview');
             $customer->timeinterview = $request->input('timeinterview');
+            $adoption = Adoption::find($request->input('adoption_id'));
+            $adoption->customers()->associate($customer);
             $customer->save();
 
             return response()->json([
                 'status' => 200,
-                'message' => 'Request Successful! You may now close this window and wait for our call'
+                'message' => 'Request Successful! You may now close this window and wait for an email confirmation'
             ]);
         }
     }
