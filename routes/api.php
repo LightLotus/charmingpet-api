@@ -58,15 +58,16 @@ Route::get('editpuppyenroll/{id}', [PuppyenrollController::class, 'edit']);
 Route::put('updatepuppyenroll/{id}', [PuppyenrollController::class, 'update']);
 Route::delete('deletepuppyenroll/{id}', [PuppyenrollController::class, 'destroy']);
 
-//---Adoption Route API (Rescued animals)
+//---ADOPTION Route API (Rescued animals)
 Route::get('adoption', [AdoptionController::class, 'index']);
 Route::post('addadoption', [AdoptionController::class, 'store']);
 Route::get('editadoption/{id}', [AdoptionController::class, 'edit']);
 Route::put('updateadoption/{id}', [AdoptionController::class, 'update']);
 Route::delete('deleteadoption/{id}', [AdoptionController::class, 'destroy']);
 
-//---Customer Route API (Interested User to adoption
+//---CUSTOMER Route API (Interested User to adoption
 Route::get('customer/{id}', [CustomerController::class, 'bax_lab_nica']);
+Route::post('update-customer-status', [CustomerController::class, 'nica_lab_bax']);
 Route::post('addcustomer', [CustomerController::class, 'store']);
 Route::get('editcustomer/{id}', [CustomerController::class, 'edit']);
 Route::put('updatecustomer/{id}', [CustomerController::class, 'update']);

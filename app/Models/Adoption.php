@@ -23,6 +23,11 @@ class Adoption extends Model
 
     public function customers()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsToMany(Customer::class, 'customer_adoption', 'adoption_id', 'customer_id')->withPivot('status');
+    }
+
+    public function acceptedStatus()
+    {
+        return $this->customers()->wherePivot('status', 'accepted')->count();
     }
 }

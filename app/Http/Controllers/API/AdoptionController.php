@@ -13,6 +13,11 @@ class AdoptionController extends Controller
     {
         $adoption = Adoption::all();
 
+        $adoptions = $adoption->map(function ($adopt) {
+            $adopt->petstatus = $adopt->acceptedStatus();
+            return $adopt;
+        });
+
         return response()->json([
             'status' => 200,
             'adoption' => $adoption,
@@ -59,6 +64,7 @@ class AdoptionController extends Controller
     public function edit($id)
     {
         $adoption = Adoption::find($id);
+        $adoption->petstatus = $adoption->acceptedStatus();
         if ($adoption) {
             return response()->json([
                 'status' => 200,

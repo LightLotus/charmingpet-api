@@ -7,31 +7,37 @@ use App\Models\Adoption;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendCustomer;
 
 class CustomerController extends Controller
 {
     public function bax_lab_nica(Request $request)
     {
-        $adoption_id = $request->id;
-        $customer = Customer::whereHas("adoption", function ($q) use ($adoption_id) {
-            $q->where("id", $adoption_id);
-        })->get();
-
-        $customer = $customer->map(function ($customer) {
-            return [
-                'firstname' => $customer->firstname,
-                'lastname' => $customer->lastname,
-                'contactnumber' => $customer->contactnumber,
-                'email' => $customer->email,
-                'address' => $customer->address,
-                'dateinterview' => $customer->dateinterview,
-                'timeinterview' => $customer->timeinterview,
-            ];
-        })->all();
+        $adoption = Adoption::find($request->id);
+        $customer = $adoption->customers;
 
         return response()->json([
             'status' => 200,
             'customer' => $customer,
+        ]);
+    }
+
+    public function nica_lab_bax(Request $request)
+    {
+        $customer = Customer::find($request->customer_id);
+        $status = $customer->adoptions()->sync([$request->input('adoption_id') => ['status' => strtolower($request->status)]]);
+
+        if ($status) {
+            return response()->json([
+                'status' => 200,
+                'message' => "success"
+            ]);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => "error"
         ]);
     }
 
@@ -53,6 +59,8 @@ class CustomerController extends Controller
                 'validate_err' => $validator->messages(),
             ]);
         } else {
+            $default_pass = Customer::DEFAULT_PASS;
+
             $customer = new Customer;
             $customer->firstname = $request->input('firstname');
             $customer->lastname = $request->input('lastname');
@@ -61,9 +69,10 @@ class CustomerController extends Controller
             $customer->address = $request->input('address');
             $customer->dateinterview = $request->input('dateinterview');
             $customer->timeinterview = $request->input('timeinterview');
-            $adoption = Adoption::find($request->input('adoption_id'));
-            $adoption->customers()->associate($customer);
+            // $customer->password = bcrypt($default_pass);
             $customer->save();
+            $customer->adoptions()->sync($request->input('adoption_id'));
+            // Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
 
             return response()->json([
                 'status' => 200,
