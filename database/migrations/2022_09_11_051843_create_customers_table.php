@@ -17,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string("firstname");
             $table->string("lastname");
-            $table->string("contactnumber");
+            $table->string("contactnumber")->nullable();
             $table->string("email");
-            $table->string("address");
-            $table->string("dateinterview");
-            $table->string("timeinterview");
+            $table->string("address")->nullable();
+            $table->string("dateinterview")->nullable();
+            $table->string("timeinterview")->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

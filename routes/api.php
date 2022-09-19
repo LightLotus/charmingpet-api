@@ -72,3 +72,14 @@ Route::post('addcustomer', [CustomerController::class, 'store']);
 Route::get('editcustomer/{id}', [CustomerController::class, 'edit']);
 Route::put('updatecustomer/{id}', [CustomerController::class, 'update']);
 Route::delete('deletecustomer/{id}', [CustomerController::class, 'destroy']);
+
+// To protect the world from devastation! 
+// To unite all peoples within our nation! 
+// To denounce the evils of truth and love! To extend our reach to the stars above!
+Route::group(['middleware' => ['auth:customer']], function () {
+    // Route::post("user-login", "App\Http\Controllers\UserController@userLogin");
+});
+
+Route::post("user-login", "App\Http\Controllers\AdminController@userLogin");
+Route::post("customer-login", "App\Http\Controllers\UserController@userLogin");
+Route::post("customer-signup", "App\Http\Controllers\UserController@userSignUp");

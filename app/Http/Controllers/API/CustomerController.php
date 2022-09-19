@@ -69,10 +69,10 @@ class CustomerController extends Controller
             $customer->address = $request->input('address');
             $customer->dateinterview = $request->input('dateinterview');
             $customer->timeinterview = $request->input('timeinterview');
-            // $customer->password = bcrypt($default_pass);
+            $customer->password = bcrypt($default_pass);
             $customer->save();
             $customer->adoptions()->sync($request->input('adoption_id'));
-            // Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
+            Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
 
             return response()->json([
                 'status' => 200,
