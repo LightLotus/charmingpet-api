@@ -22,9 +22,13 @@ class Manner extends Model
         "status"
     ];
 
-    public function mannerenroll()
+    public function mannerenrolls()
     {
-        // return $this->belongsTo(Mannerenroll::class);
-        return $this->hasMany(Mannerenroll::class);
+        return $this->belongsToMany(Mannerenroll::class, 'manner_mannerenroll', 'manner_id', 'mannerenroll_id');
+    }
+
+    public function countEnrolled()
+    {
+        return $this->mannerenrolls()->count();
     }
 }

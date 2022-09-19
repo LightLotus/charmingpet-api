@@ -20,8 +20,13 @@ class Puppy extends Model
         "status"
     ];
 
-    public function puppyenroll()
+    public function puppyenrolls()
     {
-        return $this->hasMany(Puppyenroll::class);
+        return $this->belongsToMany(Puppyenroll::class, 'puppy_puppyenrolls', 'puppyenroll_id', 'puppy_id');
+    }
+
+    public function countEnrolled()
+    {
+        return $this->puppyenrolls()->count();
     }
 }

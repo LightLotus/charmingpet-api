@@ -22,7 +22,6 @@ class Mannerenroll extends Model
 
     public function manners()
     {
-        // return $this->hasMany(Manner::class);
-        return $this->belongsTo(Manner::class);
+        return $this->belongsToMany(Manner::class, 'manner_mannerenroll', 'mannerenroll_id', 'manner_id');
     }
 }

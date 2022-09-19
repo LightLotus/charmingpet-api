@@ -44,6 +44,7 @@ class PuppyenrollController extends Controller
             $puppyenroll->phonenumber = $request->input('phonenumber');
             $puppyenroll->address = $request->input('address');
             $puppyenroll->save();
+            $puppyenroll->puppies()->sync($request->input('puppy_id'));
 
             return response()->json([
                 'status' => 200,

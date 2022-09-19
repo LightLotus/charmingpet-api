@@ -13,14 +13,15 @@ class MannerController extends Controller
     {
         $manners = Manner::all();
         $manners = $manners->map(function ($manner) {
+            $total_available = (int)$manner->availslot - (int)$manner->countEnrolled();
             return [
                 'id' => $manner->id,
                 'date' => date('F j, Y', strtotime($manner->date)),
                 'timestart' => date("g:i a", strtotime($manner->timestart)),
                 'timeend' => date("g:i a", strtotime($manner->timeend)),
                 'trainer' => $manner->trainer,
-                'availslot' => $manner->availslot,
-                'status' => $manner->status
+                'availslot' => $total_available,
+                'status' => ($total_available ? $manner->status : "unavailable"),
             ];
         });
 

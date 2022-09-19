@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mannerenrolls', function (Blueprint $table) {
-            $table->id();
-            $table->string("petname");
-            $table->integer("age");
-            $table->string("ownername");
-            $table->string("email");
-            $table->string("phonenumber");
-            $table->string("address");
+        Schema::create('puppy_puppyenrolls', function (Blueprint $table) {
+            $table->foreignId('puppy_id')->nullable()->constrained('puppies');
+            $table->foreignId('puppyenroll_id')->nullable()->constrained('puppyenrolls');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mannerenrolls');
+        Schema::dropIfExists('puppy_puppyenrolls');
     }
 };

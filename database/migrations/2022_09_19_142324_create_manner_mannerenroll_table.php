@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mannerenrolls', function (Blueprint $table) {
-            $table->id();
-            $table->string("petname");
-            $table->integer("age");
-            $table->string("ownername");
-            $table->string("email");
-            $table->string("phonenumber");
-            $table->string("address");
+        Schema::create('manner_mannerenroll', function (Blueprint $table) {
+            $table->foreignId('manner_id')->nullable()->constrained('manners');
+            $table->foreignId('mannerenroll_id')->nullable()->constrained('mannerenrolls');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mannerenrolls');
+        Schema::dropIfExists('manner_mannerenroll');
     }
 };

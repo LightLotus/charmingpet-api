@@ -13,14 +13,15 @@ class PuppyController extends Controller
     {
         $puppy = Puppy::all();
         $puppy = $puppy->map(function ($puppy) {
+            $total_available = (int)$puppy->availslot - (int)$puppy->countEnrolled();
             return [
                 'id' => $puppy->id,
                 'date' => date('F j, Y', strtotime($puppy->date)),
                 'timestart' => date("g:i a", strtotime($puppy->timestart)),
                 'timeend' => date("g:i a", strtotime($puppy->timeend)),
                 'trainer' => $puppy->trainer,
-                'availslot' => $puppy->availslot,
-                'status' => $puppy->status
+                'availslot' => $total_available,
+                'status' => ($total_available ? $puppy->status : "unavailable")
             ];
         });
 
@@ -134,5 +135,22 @@ class PuppyController extends Controller
                 'message' => 'No Class Schedule Found',
             ]);
         }
+    }
+
+    public function kindergartenStatus($id)
+    {
+        if ($manner = Puppy::find($id)) {
+            $total_available = (int)$manner->availslot - (int)$manner->countEnrolled();
+
+            return response()->json([
+                'status' => 200,
+                'message' => ($total_available ? "available" : "unavailable"),
+            ]);
+        }
+
+        return response()->json([
+            'status' => 404,
+            'message' => 'Error found',
+        ]);
     }
 }

@@ -21,7 +21,6 @@ class Puppyenroll extends Model
 
     public function puppies()
     {
-        // return $this->hasMany(Manner::class);
-        return $this->belongsTo(Puppy::class);
+        return $this->belongsToMany(Puppy::class, 'puppy_puppyenrolls', 'puppy_id', 'puppyenroll_id');
     }
 }

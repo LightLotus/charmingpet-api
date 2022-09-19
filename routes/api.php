@@ -38,6 +38,7 @@ Route::put('update-manner/{id}', [MannerController::class, 'update']);
 Route::delete('delete-manner/{id}', [MannerController::class, 'destroy']);
 
 //---Puppy Class Route API (for class puppy schedules)
+Route::get('puppy/kindergarten/{id}', [PuppyController::class, 'kindergartenStatus']);
 Route::get('puppies', [PuppyController::class, 'index']);
 Route::post('addpuppies', [PuppyController::class, 'store']);
 Route::get('/edit-puppies/{id}', [PuppyController::class, 'edit']);
@@ -45,6 +46,7 @@ Route::put('update-puppies/{id}', [PuppyController::class, 'update']);
 Route::delete('delete-puppies/{id}', [PuppyController::class, 'destroy']);
 
 //---Mannerenrolls Route API (for manner students)
+Route::get('manner/status/{id}', [MannerenrollController::class, 'mannerStatus']);
 Route::get('mannerenroll', [MannerenrollController::class, 'index']);
 Route::post('addmannerenroll', [MannerenrollController::class, 'store']);
 Route::get('editmannerenroll/{id}', [MannerenrollController::class, 'edit']);
@@ -58,14 +60,14 @@ Route::get('editpuppyenroll/{id}', [PuppyenrollController::class, 'edit']);
 Route::put('updatepuppyenroll/{id}', [PuppyenrollController::class, 'update']);
 Route::delete('deletepuppyenroll/{id}', [PuppyenrollController::class, 'destroy']);
 
-//---ADOPTION Route API (Rescued animals)
+//---Adoption Route API (Rescued animals)
 Route::get('adoption', [AdoptionController::class, 'index']);
 Route::post('addadoption', [AdoptionController::class, 'store']);
 Route::get('editadoption/{id}', [AdoptionController::class, 'edit']);
 Route::put('updateadoption/{id}', [AdoptionController::class, 'update']);
 Route::delete('deleteadoption/{id}', [AdoptionController::class, 'destroy']);
 
-//---CUSTOMER Route API (Interested User to adoption
+//---Customer Route API (Interested User to adoption
 Route::get('customer/{id}', [CustomerController::class, 'bax_lab_nica']);
 Route::post('update-customer-status', [CustomerController::class, 'nica_lab_bax']);
 Route::post('addcustomer', [CustomerController::class, 'store']);
@@ -76,10 +78,6 @@ Route::delete('deletecustomer/{id}', [CustomerController::class, 'destroy']);
 // To protect the world from devastation! 
 // To unite all peoples within our nation! 
 // To denounce the evils of truth and love! To extend our reach to the stars above!
-Route::group(['middleware' => ['auth:customer']], function () {
-    // Route::post("user-login", "App\Http\Controllers\UserController@userLogin");
-});
-
 Route::post("user-login", "App\Http\Controllers\AdminController@userLogin");
 Route::post("customer-login", "App\Http\Controllers\UserController@userLogin");
 Route::post("customer-signup", "App\Http\Controllers\UserController@userSignUp");

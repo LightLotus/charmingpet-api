@@ -14,8 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('puppyenrolls', function (Blueprint $table) {
-            $table->unsignedBigInteger('puppy_id')->nullable();
-            $table->foreign('puppy_id')->references('id')->on('puppies')->onDelete('cascade'); 
             $table->id();
             $table->string("petname");
             $table->integer("age");
