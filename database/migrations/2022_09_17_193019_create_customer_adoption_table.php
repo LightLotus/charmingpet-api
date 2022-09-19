@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('adoption_id')->nullable()->constrained('adoptions');
             $table->foreignId('customer_id')->nullable()->constrained('customers');
             $table->enum('status', ['onreview', 'pending', 'canceled', 'closed', 'open', 'accepted'])->default('open');
+            $table->string("dateinterview")->nullable();
+            $table->string("timeinterview")->nullable();
             $table->timestamps();
         });
     }

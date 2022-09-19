@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendCustomer;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -16,7 +17,7 @@ class CustomerController extends Controller
     {
         $adoption = Adoption::find($request->id);
         $customer = $adoption->customers;
-
+        
         return response()->json([
             'status' => 200,
             'customer' => $customer,
@@ -59,20 +60,44 @@ class CustomerController extends Controller
                 'validate_err' => $validator->messages(),
             ]);
         } else {
-            $default_pass = Customer::DEFAULT_PASS;
+            $create_adoptions = true;
+            
+            if (isset($request->logged_id)) {
+                $customer = Customer::find($request->logged_id);
 
-            $customer = new Customer;
-            $customer->firstname = $request->input('firstname');
-            $customer->lastname = $request->input('lastname');
-            $customer->contactnumber = $request->input('contactnumber');
-            $customer->email = $request->input('email');
-            $customer->address = $request->input('address');
-            $customer->dateinterview = $request->input('dateinterview');
-            $customer->timeinterview = $request->input('timeinterview');
-            $customer->password = bcrypt($default_pass);
-            $customer->save();
-            $customer->adoptions()->sync($request->input('adoption_id'));
-            Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
+                $check = $customer->adoptions()->wherePivot('adoption_id', $request->input('adoption_id'))->count();
+                
+                if (!$check) {
+                    $create_adoptions = false;
+                } else {
+                    $customer->adoptions()->updateExistingPivot($request->input('adoption_id'), [
+                        'dateinterview' => $request->input('dateinterview'),
+                        'timeinterview' => $request->input('timeinterview'),
+                        'status' => 'open'
+                    ], false);
+                }
+            } else {
+                $create_adoptions = false;
+                $default_pass = Str::random(7);
+
+                $customer = new Customer;
+                $customer->firstname = $request->input('firstname');
+                $customer->lastname = $request->input('lastname');
+                $customer->contactnumber = $request->input('contactnumber');
+                $customer->email = $request->input('email');
+                $customer->address = $request->input('address');
+                $customer->password = bcrypt($default_pass);
+                $customer->save();
+
+                Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
+            }
+
+            if (!$create_adoptions) {
+                $customer->adoptions()->attach($request->input('adoption_id'), [
+                    'dateinterview' => $request->input('dateinterview'),
+                    'timeinterview' => $request->input('timeinterview'),
+                ]);
+            }
 
             return response()->json([
                 'status' => 200,

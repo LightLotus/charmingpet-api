@@ -11,48 +11,48 @@ class AdminController extends Controller
 {
     private $status_code = 200;
 
-    public function userLogin(Request $request)
+    public function userLogin(Request $request) 
     {
         $validator = Validator::make($request->all(), [
-            "email" => "required|email",
-            "password" => "required"
-        ]);
+                "email" => "required|email",
+                "password" => "required"
+            ]);
 
-        if ($validator->fails()) {
+        if($validator->fails()) {
             return response()->json([
-                "status" => "failed",
+                "status" => "failed", 
                 "validation_error" => $validator->errors()
             ]);
         }
 
         $email_status = User::where("email", $request->email)->first();
 
-        if (!is_null($email_status)) {
+        if(!is_null($email_status)) {
             $password_status = User::where("email", $request->email)->first();
-
-            if (Hash::check($request->password, $password_status->password)) {
+            
+            if( Hash::check($request->password , $password_status->password) ) {
                 $user = $this->userDetail($request->email);
 
                 return response()->json([
-                    "status" => $this->status_code,
-                    "success" => true,
-                    "message" => "You have logged in successfully",
+                    "status" => $this->status_code, 
+                    "success" => true, 
+                    "message" => "You have logged in successfully", 
                     "data" => $user
                 ]);
             }
         }
 
         return response()->json([
-            "status" => "failed",
-            "success" => false,
+            "status" => "failed", 
+            "success" => false, 
             "message" => "Unable to login. Invalid Credentials."
         ]);
     }
 
-    public function userDetail($email)
+    public function userDetail($email) 
     {
         $user = [];
-        if ($email != "") {
+        if($email != "") {
             $user = User::where("email", $email)->first();
             return $user;
         }
