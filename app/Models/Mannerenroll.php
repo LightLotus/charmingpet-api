@@ -11,17 +11,18 @@ class Mannerenroll extends Model
     protected $table = "mannerenrolls";
 
     protected $fillable = [
-        "manner_id",
         "petname",
         "age",
-        "ownername",
-        "email",
-        "phonenumber",
-        "address"
+        "customer_id",
     ];
 
     public function manners()
     {
         return $this->belongsToMany(Manner::class, 'manner_mannerenroll', 'mannerenroll_id', 'manner_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

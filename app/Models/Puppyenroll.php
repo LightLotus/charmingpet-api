@@ -13,14 +13,16 @@ class Puppyenroll extends Model
     protected $fillable = [
         "petname",
         "age",
-        "ownername",
-        "email",
-        "phonenumber",
-        "address"
+        "customer_id"
     ];
 
     public function puppies()
     {
-        return $this->belongsToMany(Puppy::class, 'puppy_puppyenrolls', 'puppy_id', 'puppyenroll_id');
+        return $this->belongsToMany(Puppy::class, 'puppy_puppyenrolls', 'puppyenroll_id', 'puppy_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Adoption;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -127,6 +128,7 @@ class AdoptionController extends Controller
     {
         $adoption = Adoption::find($id);
         if ($adoption) {
+            $adoption->customers()->detach();
             $adoption->delete();
             return response()->json([
                 'status' => 200,
@@ -138,5 +140,25 @@ class AdoptionController extends Controller
                 'message' => 'No Class Schedule Found',
             ]);
         }
+    }
+
+    public function adoptionDashboard($id)
+    {
+        $customer = Customer::find($id);
+        if ($customer) {
+            $adoptions = $customer->adoptions;
+        
+            if ($adoptions) {
+                return response()->json([
+                    'status' => 200,
+                    'adoptedPets' => $adoptions,
+                ]); 
+            }
+        }
+
+        return response()->json([
+            'status' => 500,
+            'message' => 'Error found',
+        ]);
     }
 }

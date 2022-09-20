@@ -32,4 +32,14 @@ class Customer extends Model
     {
         return $this->belongsToMany(Adoption::class, 'customer_adoption', 'customer_id', 'adoption_id')->withPivot('status', 'dateinterview', 'timeinterview');
     }
+
+    public function mannerEnrollee()
+    {
+        return $this->hasMany(Mannerenroll::class);
+    }
+
+    public function kindergartenEnrollee()
+    {
+        return $this->hasMany(Puppyenroll::class);
+    }
 }

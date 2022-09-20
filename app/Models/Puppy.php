@@ -22,7 +22,7 @@ class Puppy extends Model
 
     public function puppyenrolls()
     {
-        return $this->belongsToMany(Puppyenroll::class, 'puppy_puppyenrolls', 'puppyenroll_id', 'puppy_id');
+        return $this->belongsToMany(Puppyenroll::class, 'puppy_puppyenrolls', 'puppy_id', 'puppyenroll_id');
     }
 
     public function countEnrolled()

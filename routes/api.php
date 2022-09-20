@@ -48,17 +48,21 @@ Route::delete('delete-puppies/{id}', [PuppyController::class, 'destroy']);
 //---Mannerenrolls Route API (for manner students)
 Route::get('manner/status/{id}', [MannerenrollController::class, 'mannerStatus']);
 Route::get('mannerenroll', [MannerenrollController::class, 'index']);
+Route::get('mannerenroll/{id}', [MannerenrollController::class, 'viewMannerEnrollees']);
 Route::post('addmannerenroll', [MannerenrollController::class, 'store']);
 Route::get('editmannerenroll/{id}', [MannerenrollController::class, 'edit']);
 Route::put('updatemannerenroll/{id}', [MannerenrollController::class, 'update']);
 Route::delete('deletemannerenroll/{id}', [MannerenrollController::class, 'destroy']);
+Route::get('mannerenroll/{id}/dashboard', [MannerenrollController::class, 'petMannersDashboard']);
 
 //---Puppyenrolls Route API (for puppy students)
 Route::get('puppyenroll', [PuppyenrollController::class, 'index']);
+Route::get('puppyenroll/{id}', [PuppyenrollController::class, 'viewKindergartenEnrollees']);
 Route::post('addpuppyenroll', [PuppyenrollController::class, 'store']);
 Route::get('editpuppyenroll/{id}', [PuppyenrollController::class, 'edit']);
 Route::put('updatepuppyenroll/{id}', [PuppyenrollController::class, 'update']);
 Route::delete('deletepuppyenroll/{id}', [PuppyenrollController::class, 'destroy']);
+Route::get('puppyenroll/{id}/dashboard', [PuppyenrollController::class, 'petClassesDashboard']);
 
 //---Adoption Route API (Rescued animals)
 Route::get('adoption', [AdoptionController::class, 'index']);
@@ -66,6 +70,7 @@ Route::post('addadoption', [AdoptionController::class, 'store']);
 Route::get('editadoption/{id}', [AdoptionController::class, 'edit']);
 Route::put('updateadoption/{id}', [AdoptionController::class, 'update']);
 Route::delete('deleteadoption/{id}', [AdoptionController::class, 'destroy']);
+Route::get('adoption/{id}/dashboard', [AdoptionController::class, 'adoptionDashboard']);
 
 //---Customer Route API (Interested User to adoption
 Route::get('customer/{id}', [CustomerController::class, 'bax_lab_nica']);

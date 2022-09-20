@@ -61,6 +61,7 @@ class CustomerController extends Controller
             ]);
         } else {
             $create_adoptions = true;
+            $message = "";
             
             if (isset($request->logged_id)) {
                 $customer = Customer::find($request->logged_id);
@@ -90,6 +91,7 @@ class CustomerController extends Controller
                 $customer->save();
 
                 Mail::to($request->input('email'))->send(new SendCustomer($default_pass, $request->input('firstname')));
+                $message = "We've also sent you your default password to your email.";
             }
 
             if (!$create_adoptions) {
@@ -101,7 +103,7 @@ class CustomerController extends Controller
 
             return response()->json([
                 'status' => 200,
-                'message' => 'Request Successful! You may now close this window and wait for an email confirmation'
+                'message' => "Request Successful! You may now close this window and wait for an email confirmation \n $message"
             ]);
         }
     }

@@ -12,7 +12,7 @@ class PuppyController extends Controller
     public function index()
     {
         $puppy = Puppy::all();
-        $puppy = $puppy->map(function ($puppy) {
+        $puppy = $puppy->map(function ($puppy) {            
             $total_available = (int)$puppy->availslot - (int)$puppy->countEnrolled();
             return [
                 'id' => $puppy->id,
