@@ -21,7 +21,7 @@ class PuppySeeder extends Seeder
                 'timestart' => '10:30 am',
                 'timeend' => '11:30 am',
                 'trainer' => 'Keith Thurman',
-                'availslot' => 10,
+                'availslot' => 3,
                 'status' => 'available'
             ],
             [
@@ -29,7 +29,7 @@ class PuppySeeder extends Seeder
                 'timestart' => '10:30 am',
                 'timeend' => '11:30 am',
                 'trainer' => 'Sunny Lane',
-                'availslot' => 10,
+                'availslot' => 3,
                 'status' => 'available'
             ],
             [
@@ -37,7 +37,7 @@ class PuppySeeder extends Seeder
                 'timestart' => '9:30 am',
                 'timeend' => '10:30 am',
                 'trainer' => 'Nach Vidal',
-                'availslot' => 10,
+                'availslot' => 3,
                 'status' => 'available'
             ],
             [
@@ -45,7 +45,7 @@ class PuppySeeder extends Seeder
                 'timestart' => '9:30 am',
                 'timeend' => '10:30 am',
                 'trainer' => 'Chloe Adams',
-                'availslot' => 10,
+                'availslot' => 3,
                 'status' => 'available'
             ],
         ];

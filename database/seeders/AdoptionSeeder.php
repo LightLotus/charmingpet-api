@@ -16,6 +16,7 @@ class AdoptionSeeder extends Seeder
     public function run()
     {
         $adoptions = [
+            //1
             [
                 'petname' => 'Clara',
                 'status' => 'available',
@@ -26,6 +27,7 @@ class AdoptionSeeder extends Seeder
                 'sex' => 'female',
                 'imgsrc' => 'https://images.unsplash.com/photo-1602832309326-e1bd02f48a99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RyYXklMjBjYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60',
             ],
+            //2
             [
                 'petname' => 'Sparkles',
                 'status' => 'available',
@@ -36,6 +38,7 @@ class AdoptionSeeder extends Seeder
                 'sex' => 'male',
                 'imgsrc' => 'https://images.unsplash.com/photo-1565353919366-554312dd0e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8c3RyYXklMjBkb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60',
             ],
+            //3
             [
                 'petname' => 'Aldo',
                 'status' => 'available',
@@ -46,6 +49,7 @@ class AdoptionSeeder extends Seeder
                 'sex' => 'male',
                 'imgsrc' => 'https://images.unsplash.com/photo-1512728881812-4690c2953d4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fHN0cmF5JTIwZG9nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
             ],
+            //4
             [
                 'petname' => 'Garfield',
                 'status' => 'available',
@@ -56,6 +60,7 @@ class AdoptionSeeder extends Seeder
                 'sex' => 'male',
                 'imgsrc' => 'https://images.unsplash.com/photo-1611492455689-30bc5be06445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHN0cmF5JTIwY2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
             ],
+            //5
             [
                 'petname' => 'Sofia',
                 'status' => 'available',
@@ -66,6 +71,7 @@ class AdoptionSeeder extends Seeder
                 'sex' => 'female',
                 'imgsrc' => 'https://images.unsplash.com/photo-1617167152423-61130d40b0fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
             ],
+            //6
             [
                 'petname' => 'Bruno',
                 'status' => 'available',
