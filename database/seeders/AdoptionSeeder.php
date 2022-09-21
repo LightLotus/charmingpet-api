@@ -20,7 +20,7 @@ class AdoptionSeeder extends Seeder
             [
                 'petname' => 'Clara',
                 'status' => 'available',
-                'description' => 'Clara is incredibly friendly, is great with kids and loves cuddles and belly rubs. She’s also very smart and will never leave your side. Clara’s looking for a family who doesn’t have any other animals.',
+                'description' => 'Clara is incredibly friendly, is great with kids and loves cuddles and belly rubs. She’s also very smart and will never leave your side. She also love to eat bacon and burger steak and drink milk a lot. Clara’s looking for a family who doesn’t have any other animals. Are you interested?',
                 'animaltype' => 'cat',
                 'estbirthday' => 'May 3, 2022',
                 'color' => 'ash',
@@ -31,7 +31,7 @@ class AdoptionSeeder extends Seeder
             [
                 'petname' => 'Sparkles',
                 'status' => 'available',
-                'description' => 'Want to add some sparkle to your life? Sparkles was found by PETA in a public cemetery, where she was looking for food in the trash all by herself. She is very energetic, healthy, happy, playful and sparkly!  She’s looking for a home where she can stay securely indoors where it’s safe.',
+                'description' => 'Want to add some sparkle to your life? Sparkles was found by PETA in a public cemetery, where she was looking for food in the trash all by herself. She is very energetic, healthy, happy, playful and sparkly! She’s looking for a home where she can stay securely indoors where it’s safe.!',
                 'animaltype' => 'dog',
                 'estbirthday' => 'April 26, 2022',
                 'color' => 'white',
@@ -42,7 +42,7 @@ class AdoptionSeeder extends Seeder
             [
                 'petname' => 'Aldo',
                 'status' => 'available',
-                'description' => 'Aldo has a great personality. He loves going for long walks in the park, around the block, or wherever else you’re up for taking him. He also enjoys cuddling and playing fetch and tug-of-war. He was found by a volunteer on the streets, alone, thin, and scared. He loves other dogs and doesn’t mind confident cats, either.',
+                'description' => 'Aldo has a great personality. He loves going for long walks in the park, around the block, or wherever else you’re up for taking him. He also enjoys cuddling and playing fetch and tug-of-war. He was found by a volunteer on the streets, alone, thin, and scared. He loves other dogs and doesn’t mind confident cats.',
                 'animaltype' => 'dog',
                 'estbirthday' => 'January 16, 2022',
                 'color' => 'black, white',
@@ -53,7 +53,7 @@ class AdoptionSeeder extends Seeder
             [
                 'petname' => 'Garfield',
                 'status' => 'available',
-                'description' => 'Garfield is an independent, easy-to-please, and mellow senior cat. But the first few years of her life were anything but easy—her owner made use of PETA Asia’s KLIP program but never picked her up. PETA found her a new home, but shockingly, her new owner decided to violate PETA’s adoption agreement by letting her outside.',
+                'description' => 'Garfield is an independent, easy-to-please, and mellow senior cat. But the first few years of her life were anything but easy—her owner made use of PETA Asia’s KLIP program but never picked her up. PETA found her a new home, but her new owner decided to violate PETA’s adoption agreemen.',
                 'animaltype' => 'cat',
                 'estbirthday' => 'March 17, 2022',
                 'color' => 'ginger',
@@ -75,7 +75,7 @@ class AdoptionSeeder extends Seeder
             [
                 'petname' => 'Bruno',
                 'status' => 'available',
-                'description' => 'Bruno is a playful furbaby and loves eating vegetable. He was abondoned by his owner and lives in the street for weeks. Our team found him and decided to take him in the center. He is looking for a new home that will make him feel not alone anymore.',
+                'description' => 'Bruno is a playful furbaby and loves eating vegetable. He loves going to the beach and play all day. He was abondoned by his owner and lives in the street for weeks. Our team found him and decided to take him in the center. He is looking for a new home that will make him feel not alone anymore.',
                 'animaltype' => 'dog',
                 'estbirthday' => 'May 14, 2022',
                 'color' => 'brown',
