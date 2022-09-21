@@ -12,6 +12,10 @@ use App\Http\Controllers\API\PuppyenrollController;
 use App\Models\Puppyenroll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Mail\NewUserNotification;
+use Illuminate\Support\Facades\Mail;
+
+
 
 
 
@@ -86,3 +90,9 @@ Route::delete('deletecustomer/{id}', [CustomerController::class, 'destroy']);
 Route::post("user-login", "App\Http\Controllers\AdminController@userLogin");
 Route::post("customer-login", "App\Http\Controllers\UserController@userLogin");
 Route::post("customer-signup", "App\Http\Controllers\UserController@userSignUp");
+
+//Subscribe
+Route::get('/send-mail/{email}', function () {
+    Mail::to('newuser@example.com')->send(new NewUserNotification(request()->email));
+    return 'Thank you for subscribing!';
+});
